@@ -68,7 +68,7 @@ vec2 biqgrad(sampler2D channel, vec2 res, vec2 uv) {
 void main()
 {	
 	vec2 uv = gl_FragCoord.xy / vec2(1600.0,900.0);
-	uv = floor(uv*400)/400;
+	uv = floor(uv*500)/500;
 
 #if CAMERA_FILTER
 	vec3 rgb = texture(screenTexture, uv).rgb;
