@@ -581,6 +581,8 @@
     <None Include="resources\models\Sponza\glTF\Sponza.bin" />
     <None Include="resources\models\Sponza\glTF\Sponza.gltf" />
     <None Include="resources\models\Sponza\README.md" />
+    <None Include="src\shaders\raster.fs" />
+    <None Include="src\shaders\raster.vs" />
     <None Include="src\shaders\screen_quad.fs" />
     <None Include="src\shaders\screen_quad.vs" />
     <None Include="src\shaders\test.fs" />

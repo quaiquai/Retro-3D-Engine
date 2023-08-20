@@ -63,5 +63,5 @@ void main()
     diffuse.rgb   *= attenuation;
     
 	vec4 result = ambient + diffuse;
-	FragColor = mix(result, vec4(0.5, 0.5, 1.0, 1.0), depth);
+	FragColor = mix(result, vec4(0.2, 0.2, 0.2, 1.0), depth);
 }

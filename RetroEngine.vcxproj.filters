@@ -1285,6 +1285,8 @@
     <None Include="resources\models\apart\apart.gltf" />
     <None Include="resources\models\pharma\scene.gltf" />
     <None Include="resources\models\hallway\scene.gltf" />
+    <None Include="src\shaders\raster.vs" />
+    <None Include="src\shaders\raster.fs" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libs\glfw3.lib" />

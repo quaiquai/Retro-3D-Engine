@@ -68,15 +68,15 @@ vec2 biqgrad(sampler2D channel, vec2 res, vec2 uv) {
 void main()
 {	
 	vec2 uv = gl_FragCoord.xy / vec2(1600.0,900.0);
-	uv = floor(uv*500)/500;
+	//uv = floor(uv*500)/500;
 
-#if CAMERA_FILTER
+#if CAMERA_FILTER == 1
 	vec3 rgb = texture(screenTexture, uv).rgb;
     vec2 edg = biqgrad(screenTexture, vec2(1600.0,900.0), uv);
     vec3 col = vec3(1. / (-rgb + 1.) / 6.); // Invert, then filter as quotient
 	col = vec3(col.xy - edg / 2.0, col.z); // Apply Edge Deterioration
 	vec3 color = col;
-#else
+#elif CAMERA_FILTER == 2
 	vec2 fisheyeUV = fisheye(uv, 0.3);
 	vec3 color = channelSplit(screenTexture, fisheyeUV);
 	vec2 screenSpace = fisheyeUV * vec2(1600.0,900.0);
@@ -85,7 +85,8 @@ void main()
 	float vignette = uv.x * uv.y * ( 1.0 - uv.x ) * ( 1.0 - uv.y );
     vignette = clamp( pow( 16.0 * vignette, 0.3 ), 0.0, 1.0 );
     color *= vignette;
-    //vec3 col = texture(screenTexture, TexCoords).rgb;
+#else
+    vec3 color = texture(screenTexture, uv).rgb;
 #endif
     FragColor = vec4(color, 1.0);
 }

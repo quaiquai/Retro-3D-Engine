@@ -117,6 +117,12 @@ void processInput(GLFWwindow *window)
 		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+		// tell GLFW to capture our mouse
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+		// tell GLFW to capture our mouse
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
 
