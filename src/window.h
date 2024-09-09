@@ -3,7 +3,8 @@
 
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "camera.h"
+
+#include "src/ui.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -18,6 +19,9 @@ public:
 	unsigned int width;
 	unsigned int height;
 	const char * window_title;
+
+	//Camera camera;
+	UI windowUI;
 
 	// timing
 	// time between current frame and last frame
@@ -47,11 +51,15 @@ public:
 			return;
 		}
 
+		//callbacks
 		glfwMakeContextCurrent(window);
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 		glfwSetCursorPosCallback(window, mouse_callback);
 		glfwSetScrollCallback(window, scroll_callback);
 		glfwPollEvents();
+
+		windowUI = UI(window);
+	
 
 		// tell GLFW to capture our mouse
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -74,6 +82,7 @@ public:
 		window_title = title;
 		lastFrame = 0.0f;
 		iTime = 0.0f;
+
 
 	}
 
@@ -120,6 +129,7 @@ void processInput(GLFWwindow *window)
 	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
 		// tell GLFW to capture our mouse
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
 		// tell GLFW to capture our mouse
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);

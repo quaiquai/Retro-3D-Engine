@@ -423,6 +423,7 @@
     <ClInclude Include="src\stb_image.h" />
     <ClInclude Include="src\stb_image_write.h" />
     <ClInclude Include="src\tiny_gltf.h" />
+    <ClInclude Include="src\triangle.h" />
     <ClInclude Include="src\ui.h" />
     <ClInclude Include="src\window.h" />
     <ClInclude Include="stdafx.h" />
@@ -439,6 +440,8 @@
     <ClCompile Include="includes\glm\detail\glm.cpp" />
     <ClCompile Include="RetroEngine.cpp" />
     <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\rmath.h" />
+    <ClCompile Include="src\temp_model_functions.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="includes\glm\detail\func_common.inl" />

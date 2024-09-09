@@ -15,19 +15,16 @@ public:
 	UI(GLFWwindow* window) {
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
-		ImGuiIO &io = ImGui::GetIO();
+		ImGuiIO& io = ImGui::GetIO();
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch
 
-		// Setup Platform/Renderer bindings
-		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 330");
-
-		// Setup Dear ImGui style
-		ImGui::StyleColorsDark();
-		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-
-
+																  // Setup Platform/Renderer backends
+		ImGui_ImplGlfw_InitForOpenGL(window, true);          // Second param install_callback=true will install GLFW callbacks and chain to existing ones.
+		ImGui_ImplOpenGL3_Init();
 	}
+	UI() {}
 
 	void newFrameUI() {
 		// feed inputs to dear imgui, start new frame
@@ -36,7 +33,7 @@ public:
 		ImGui::NewFrame();
 
 		// render your GUI
-		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+		//ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 
 		this->drawMenus();
 	}

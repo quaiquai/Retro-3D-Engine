@@ -837,6 +837,9 @@
     <ClInclude Include="src\quad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RetroEngine.cpp">
@@ -867,6 +870,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\temp_model_functions.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rmath.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,13 +17,19 @@ public:
 	unsigned int width;
 	unsigned int height;
 
+	float *pixels;
+	int sizeOfBuffer;
+
 	Renderer() {}
 
-	Renderer(unsigned int w,unsigned int h) {
+	Renderer(unsigned int w, unsigned int h) {
 		width = w;
 		height = h;
 		screen_quad = Quad();
+		sizeOfBuffer = w * h * 3;
+		pixels = new float[w*h * 3];
 	}
+
 
 	void init() {
 
@@ -72,6 +78,54 @@ public:
 
 
 	}
+
+	template <size_t N>
+	void clearScreen(const int (&col)[N]) {
+		static_assert(N == 3, "Function requires an array of size 3");
+		for (int i = 0; i < sizeOfBuffer; i+=3) {
+			this->pixels[i] = col[0];
+			this->pixels[i + 1] = col[1];
+			this->pixels[i + 2] = col[2];
+		}
+	}
+
+	//simple parametric line drawing
+	void renderLine(const int x0, const int y0, 
+					const int x1, const int y1) {
+
+		for (float t = 0.; t<1.; t += 0.01) {
+			int x = x0 + (x1 - x0)*t;
+			int y = y0 + (y1 - y0)*t;
+
+			//(x,y) points can be defined as negative in 2D cartesian space. The array that holds the data is 1D in only positive indices
+			//this maps the negative quadrant from cartesian space to the positive position in the array. i.e. (-50, 50) in a 100x100 cartesian space
+			//will get mapped to (0,0) in the array. Both are equivelant in representing lower left corner in both spaces.
+			int normX = x + width / 2;
+			int normY = y + height / 2;
+
+			//if values are larger than (SCR_WIDTH, SCR_HEIGHT) or less than (0,0) then we will be writing outside the array bounds.
+			//this clamps the values
+			if (normX < 0) normX = 0;
+			if (normX > width - 1) normX = width - 1;
+			if (normY < 0) normY = 0;
+			if (normY > height - 1) normY = height - 1;
+
+
+			this->pixels[(width * normY + normX) * 3] = 0.0f;
+			this->pixels[(width * normY + normX) * 3 + 1] = 0.0f;
+			this->pixels[(width * normY + normX) * 3 + 2] = 1.0f;
+
+		}
+	}
+
+	void renderTriangle(const int p1x, const int p1y, 
+						const int p2x, const int p2y, 
+						const int p3x, const int p3y) {
+		renderLine(p1x, p1y, p2x, p2y);
+		renderLine(p2x, p2y, p3x, p3y);
+		renderLine(p3x, p3y, p1x, p1y);
+	}
+
 
 };
 

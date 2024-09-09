@@ -1,13 +1,15 @@
 #ifndef MESH_H
 #define	MESH_H
 
-#include "scene_object.h"
+#include <vector>
+#include "triangle.h"
 
-class Mesh: public SceneObject {
+class Mesh{
 
 public:
 
-	Mesh()
+	std::vector<Triangle> triangles;
+	Mesh();
 
 };
 
